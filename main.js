@@ -6,11 +6,16 @@ function addTask() {
     alert("Please enter a task");
   } else {
     let li = document.createElement("li");
-    li.innerHTML = inpuT.value;
-    listCon.appendChild(li);
+    let p = document.createElement("p");
+    p.textContent = inpuT.value;
+    p.setAttribute("contenteditable", "true");
+    li.appendChild(p);
+
     let span = document.createElement("span");
     span.innerHTML = "\u00D7";
     li.appendChild(span);
+
+    listCon.appendChild(li);
   }
   inpuT.value = "";
 
@@ -27,6 +32,7 @@ listCon.addEventListener(
     } else if (e.target.tagName === "SPAN") {
       e.target.parentElement.remove();
       save();
+    } else {
     }
   },
   false
@@ -41,3 +47,9 @@ function show() {
 }
 
 show();
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    addTask();
+  }
+});
