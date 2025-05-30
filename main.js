@@ -1,4 +1,4 @@
-const inpuT = document.getElementById("input");
+let inpuT = document.getElementById("input");
 const listCon = document.getElementById("listCon");
 
 function addTask() {
@@ -8,7 +8,7 @@ function addTask() {
     let li = document.createElement("li");
     let p = document.createElement("p");
     p.textContent = inpuT.value;
-    p.setAttribute("contenteditable", "true");
+    p.className = "p";
     li.appendChild(p);
 
     let span = document.createElement("span");
@@ -33,10 +33,22 @@ listCon.addEventListener(
       e.target.parentElement.remove();
       save();
     } else {
+      inpuT.value = e.target.textContent;
+      e.target.parentElement.remove();
+
+      let btn = document.getElementById("btn");
+      btn.innerHTML = "Save";
+      btn.addEventListener("click", () => {
+        btn.innerHTML = "ADD";
+      });
     }
   },
+
   false
 );
+
+let btn = document.getElementById("btn");
+btn.innerHTML = "Add";
 
 function save() {
   localStorage.setItem("data", listCon.innerHTML);

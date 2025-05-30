@@ -116,3 +116,7 @@ li span {
 li span:hover {
   background: #edeef0;
 }
+
+p {
+  padding: 2px 1px;
+}
